@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALL COMMAND CENTER</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#fff;color:#000}
+header{padding:12px 16px;border-bottom:1px solid #ddd;position:sticky;top:0;background:#fff;z-index:5}
+h1{margin:0;color:#0b2f6b;font-size:24px}
+button{margin:4px;padding:10px 14px;border:1px solid #aaa;border-radius:8px;background:#f7f7f7;font-size:15px}
+.wrap{overflow:auto;padding:18px}
+.chart{min-width:1450px;position:relative}
+.top{width:390px;margin:0 auto 45px auto;border:2px solid #000;border-radius:8px;background:#eef8ff;padding:12px}
+.top:after{content:"";position:absolute;left:50%;top:168px;height:45px;border-left:3px solid #000}
+.level1{display:grid;grid-template-columns:repeat(10,1fr);gap:16px;border-top:3px solid #000;padding-top:28px}
+.col{position:relative}
+.num{position:absolute;top:-42px;left:50%;transform:translateX(-50%);background:#0b2f6b;color:white;padding:6px 10px;border-radius:5px;font-weight:bold}
+.col:before{content:"";position:absolute;top:-28px;left:50%;height:28px;border-left:3px solid #000}
+.box{border:2px solid #000;border-radius:7px;background:#eef8ff;padding:8px;margin-bottom:22px;min-height:128px}
+.child{margin-left:22px;min-height:105px}
+label{font-size:12px;font-weight:bold;display:block;margin-top:4px}
+input,textarea{width:100%;box-sizing:border-box;border:0;border-bottom:1px solid #777;background:transparent;font-size:12px}
+textarea{height:26px;resize:vertical}
+@media print{header{display:none}.wrap{overflow:visible}.chart{transform:scale(.62);transform-origin:top left}}
+</style>
+</head>
+<body>
+<header>
+<h1>HALL COMMAND CENTER</h1>
+<div>Team Organization Chart</div>
+<div>
+<button onclick="window.print()">Print</button>
+<button onclick="saveData()">Save</button>
+<button onclick="loadData()">Load</button>
+<button onclick="sharePage()">Share</button>
+<button onclick="clearData()">Reset</button>
+</div>
+</header>
+<div class="wrap"><div class="chart">
+<div class="top box">
+<label>YOU / LEADER</label>
+<label>Name:</label><input data-k="leader_name">
+<label>Date:</label><input data-k="leader_date">
+<label>Start Investment: $</label><input data-k="leader_invest">
+<label>Copy / Paste 1:</label><textarea data-k="leader_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="leader_cp2"></textarea>
+</div>
+<div class="level1">
+<div class="col"><div class="num">1</div>
+<div class="box">
+<label>Name:</label><input data-k="d1_name">
+<label>Date:</label><input data-k="d1_date">
+<label>Start Investment: $</label><input data-k="d1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d1_1_name">
+<label>Date:</label><input data-k="d1_1_date">
+<label>Start Investment: $</label><input data-k="d1_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d1_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d1_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d1_2_name">
+<label>Date:</label><input data-k="d1_2_date">
+<label>Start Investment: $</label><input data-k="d1_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d1_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d1_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d1_3_name">
+<label>Date:</label><input data-k="d1_3_date">
+<label>Start Investment: $</label><input data-k="d1_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d1_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d1_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">2</div>
+<div class="box">
+<label>Name:</label><input data-k="d2_name">
+<label>Date:</label><input data-k="d2_date">
+<label>Start Investment: $</label><input data-k="d2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d2_1_name">
+<label>Date:</label><input data-k="d2_1_date">
+<label>Start Investment: $</label><input data-k="d2_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d2_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d2_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d2_2_name">
+<label>Date:</label><input data-k="d2_2_date">
+<label>Start Investment: $</label><input data-k="d2_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d2_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d2_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d2_3_name">
+<label>Date:</label><input data-k="d2_3_date">
+<label>Start Investment: $</label><input data-k="d2_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d2_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d2_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">3</div>
+<div class="box">
+<label>Name:</label><input data-k="d3_name">
+<label>Date:</label><input data-k="d3_date">
+<label>Start Investment: $</label><input data-k="d3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d3_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d3_1_name">
+<label>Date:</label><input data-k="d3_1_date">
+<label>Start Investment: $</label><input data-k="d3_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d3_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d3_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d3_2_name">
+<label>Date:</label><input data-k="d3_2_date">
+<label>Start Investment: $</label><input data-k="d3_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d3_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d3_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d3_3_name">
+<label>Date:</label><input data-k="d3_3_date">
+<label>Start Investment: $</label><input data-k="d3_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d3_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d3_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">4</div>
+<div class="box">
+<label>Name:</label><input data-k="d4_name">
+<label>Date:</label><input data-k="d4_date">
+<label>Start Investment: $</label><input data-k="d4_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d4_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d4_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d4_1_name">
+<label>Date:</label><input data-k="d4_1_date">
+<label>Start Investment: $</label><input data-k="d4_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d4_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d4_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d4_2_name">
+<label>Date:</label><input data-k="d4_2_date">
+<label>Start Investment: $</label><input data-k="d4_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d4_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d4_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d4_3_name">
+<label>Date:</label><input data-k="d4_3_date">
+<label>Start Investment: $</label><input data-k="d4_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d4_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d4_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">5</div>
+<div class="box">
+<label>Name:</label><input data-k="d5_name">
+<label>Date:</label><input data-k="d5_date">
+<label>Start Investment: $</label><input data-k="d5_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d5_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d5_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d5_1_name">
+<label>Date:</label><input data-k="d5_1_date">
+<label>Start Investment: $</label><input data-k="d5_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d5_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d5_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d5_2_name">
+<label>Date:</label><input data-k="d5_2_date">
+<label>Start Investment: $</label><input data-k="d5_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d5_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d5_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d5_3_name">
+<label>Date:</label><input data-k="d5_3_date">
+<label>Start Investment: $</label><input data-k="d5_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d5_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d5_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">6</div>
+<div class="box">
+<label>Name:</label><input data-k="d6_name">
+<label>Date:</label><input data-k="d6_date">
+<label>Start Investment: $</label><input data-k="d6_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d6_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d6_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d6_1_name">
+<label>Date:</label><input data-k="d6_1_date">
+<label>Start Investment: $</label><input data-k="d6_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d6_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d6_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d6_2_name">
+<label>Date:</label><input data-k="d6_2_date">
+<label>Start Investment: $</label><input data-k="d6_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d6_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d6_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d6_3_name">
+<label>Date:</label><input data-k="d6_3_date">
+<label>Start Investment: $</label><input data-k="d6_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d6_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d6_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">7</div>
+<div class="box">
+<label>Name:</label><input data-k="d7_name">
+<label>Date:</label><input data-k="d7_date">
+<label>Start Investment: $</label><input data-k="d7_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d7_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d7_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d7_1_name">
+<label>Date:</label><input data-k="d7_1_date">
+<label>Start Investment: $</label><input data-k="d7_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d7_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d7_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d7_2_name">
+<label>Date:</label><input data-k="d7_2_date">
+<label>Start Investment: $</label><input data-k="d7_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d7_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d7_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d7_3_name">
+<label>Date:</label><input data-k="d7_3_date">
+<label>Start Investment: $</label><input data-k="d7_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d7_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d7_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">8</div>
+<div class="box">
+<label>Name:</label><input data-k="d8_name">
+<label>Date:</label><input data-k="d8_date">
+<label>Start Investment: $</label><input data-k="d8_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d8_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d8_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d8_1_name">
+<label>Date:</label><input data-k="d8_1_date">
+<label>Start Investment: $</label><input data-k="d8_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d8_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d8_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d8_2_name">
+<label>Date:</label><input data-k="d8_2_date">
+<label>Start Investment: $</label><input data-k="d8_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d8_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d8_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d8_3_name">
+<label>Date:</label><input data-k="d8_3_date">
+<label>Start Investment: $</label><input data-k="d8_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d8_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d8_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">9</div>
+<div class="box">
+<label>Name:</label><input data-k="d9_name">
+<label>Date:</label><input data-k="d9_date">
+<label>Start Investment: $</label><input data-k="d9_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d9_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d9_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d9_1_name">
+<label>Date:</label><input data-k="d9_1_date">
+<label>Start Investment: $</label><input data-k="d9_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d9_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d9_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d9_2_name">
+<label>Date:</label><input data-k="d9_2_date">
+<label>Start Investment: $</label><input data-k="d9_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d9_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d9_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d9_3_name">
+<label>Date:</label><input data-k="d9_3_date">
+<label>Start Investment: $</label><input data-k="d9_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d9_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d9_3_cp2"></textarea>
+</div></div>
+<div class="col"><div class="num">10</div>
+<div class="box">
+<label>Name:</label><input data-k="d10_name">
+<label>Date:</label><input data-k="d10_date">
+<label>Start Investment: $</label><input data-k="d10_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d10_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d10_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d10_1_name">
+<label>Date:</label><input data-k="d10_1_date">
+<label>Start Investment: $</label><input data-k="d10_1_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d10_1_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d10_1_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d10_2_name">
+<label>Date:</label><input data-k="d10_2_date">
+<label>Start Investment: $</label><input data-k="d10_2_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d10_2_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d10_2_cp2"></textarea>
+</div><div class="box child">
+<label>Name:</label><input data-k="d10_3_name">
+<label>Date:</label><input data-k="d10_3_date">
+<label>Start Investment: $</label><input data-k="d10_3_invest">
+<label>Copy / Paste 1:</label><textarea data-k="d10_3_cp1"></textarea>
+<label>Copy / Paste 2:</label><textarea data-k="d10_3_cp2"></textarea>
+</div></div>
+
+</div></div></div>
+<script>
+const KEY='hall_command_center_chart_v1';
+function saveData(){
+ const data={};
+ document.querySelectorAll('[data-k]').forEach(el=>data[el.dataset.k]=el.value);
+ localStorage.setItem(KEY,JSON.stringify(data));
+}
+function loadData(){
+ const data=JSON.parse(localStorage.getItem(KEY)||'{}');
+ document.querySelectorAll('[data-k]').forEach(el=>{el.value=data[el.dataset.k]||'';});
+}
+function clearData(){
+ if(confirm('Clear all chart fields?')){
+  document.querySelectorAll('[data-k]').forEach(el=>el.value='');
+  localStorage.removeItem(KEY);
+ }
+}
+async function sharePage(){
+ saveData();
+ if(navigator.share){await navigator.share({title:'HALL COMMAND CENTER',text:'HALL COMMAND CENTER chart'});}
+ else{alert('Use your browser menu to share this file.');}
+}
+window.addEventListener('input',saveData);
+loadData();
+</script>
+</body>
+</html>
